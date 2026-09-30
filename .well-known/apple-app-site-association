@@ -1,0 +1,16 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["UCL372NRA5.com.calhuesman.insync"],
+        "components": [
+          {
+            "/": "/join.html",
+            "?": { "code": "?*" },
+            "comment": "InSync invite links: open the app to confirm joining"
+          }
+        ]
+      }
+    ]
+  }
+}
