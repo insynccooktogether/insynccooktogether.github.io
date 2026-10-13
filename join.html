@@ -7,6 +7,10 @@
 <meta name="description" content="You've been invited to InSync: pick cravings together, match, cook together.">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#FFF5EE">
+<!-- Smart App Banner. On the join page it carries this exact link, so
+     "Open" in the banner hands the invite code straight to the app. -->
+<script>document.write('<meta name="apple-itunes-app" content="app-id=6815504220, app-argument=' + location.href.replace(/["<>]/g, '') + '">');</script>
+<noscript><meta name="apple-itunes-app" content="app-id=6815504220"></noscript>
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -44,8 +48,9 @@
     <p class="lead">Let's figure out what to eat together.</p>
     <div class="code" id="code" aria-label="Invite code"></div>
     <p class="hint">Your invite code</p>
-    <a class="btn primary" href="https://apps.apple.com/app/id6815504220">Get InSync</a>
-    <a class="btn secondary" id="open" href="insync://join">Already have it? Open InSync</a>
+    <a class="btn primary" href="https://apps.apple.com/app/insync-cook-together/id6815504220">Download on the App Store</a>
+    <a class="btn secondary" id="open" href="insync://join">Open in InSync</a>
+    <p class="hint">Already have InSync? Tap Open in InSync.</p>
     <ol class="steps">
       <li>Get InSync from the App Store.</li>
       <li>Open it and tap "I have an invite code".</li>
@@ -56,7 +61,7 @@
   <div class="bad" id="bad">
     <h1>This invite link looks broken</h1>
     <p class="lead">Ask your partner to send a new invite from InSync.</p>
-    <a class="btn primary" href="https://apps.apple.com/app/id6815504220">Get InSync</a>
+    <a class="btn primary" href="https://apps.apple.com/app/insync-cook-together/id6815504220">Download on the App Store</a>
   </div>
 </main>
 <footer class="site">
