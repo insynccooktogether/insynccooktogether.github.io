@@ -35,6 +35,7 @@
   .btn.secondary { border: 2px solid var(--navy); color: var(--navy); }
   .steps { text-align: left; max-width: 360px; margin: 24px auto 0; color: var(--muted); font-size: 15px; }
   .bad { display: none; }
+  .copied { display: none; margin-top: -4px; color: var(--navy); font-weight: 600; }
 </style>
 </head>
 <body>
@@ -48,7 +49,8 @@
     <p class="lead">Let's figure out what to eat together.</p>
     <div class="code" id="code" aria-label="Invite code"></div>
     <p class="hint">Your invite code</p>
-    <a class="btn primary" href="https://apps.apple.com/app/insync-cook-together/id6815504220">Download on the App Store</a>
+    <a class="btn primary" id="get" href="https://apps.apple.com/app/insync-cook-together/id6815504220">Download on the App Store</a>
+    <p class="hint copied" id="copied" role="status">Your invite code is copied. InSync will find it when you open the app.</p>
     <a class="btn secondary" id="open" href="insync://join">Open in InSync</a>
     <p class="hint">Already have InSync? Tap Open in InSync.</p>
     <ol class="steps">
@@ -76,6 +78,23 @@
   if (/^[A-HJ-NP-Z2-9]{6}$/.test(code)) {
     document.getElementById('code').textContent = code;
     document.getElementById('open').href = 'insync://join?code=' + code;
+    // Invite through install: the link goes on the clipboard as they head
+    // to the App Store, and InSync picks it up on first launch.
+    var link = 'https://insynccooktogether.github.io/join.html?code=' + code;
+    document.getElementById('get').addEventListener('click', function () {
+      var shown = function () { document.getElementById('copied').style.display = 'block'; };
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(link).then(shown, function () {});
+        } else {
+          var box = document.createElement('textarea');
+          box.value = link; box.setAttribute('readonly', ''); box.style.position = 'absolute'; box.style.left = '-9999px';
+          document.body.appendChild(box); box.select();
+          if (document.execCommand('copy')) shown();
+          document.body.removeChild(box);
+        }
+      } catch (e) {}
+    });
   } else {
     document.getElementById('ok').style.display = 'none';
     document.getElementById('bad').style.display = 'block';
