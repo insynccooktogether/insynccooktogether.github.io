@@ -106,7 +106,13 @@
     }
     return;
   }
-  if (inApp) {
+  if (inApp && ios) {
+    // TikTok/IG in-app browser: go straight to the App Store page (apps.apple.com opens inside TikTok with a Get
+    // button). Showing the "tap ••• then open in browser" steps first lost 199 of 200 ad visitors on Nov 7.
+    // The steps only show if we're somehow still on this page a few seconds later.
+    toStore();
+    setTimeout(function () { document.getElementById('overlay').classList.add('on'); }, 3000);
+  } else if (inApp) {
     document.getElementById('overlay').classList.add('on');
   } else if (ios) {
     toStore();   // Safari / Chrome on iPhone: straight to the App Store.
